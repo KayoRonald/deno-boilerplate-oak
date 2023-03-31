@@ -1,5 +1,5 @@
 import { dotenvConfig } from '../deps.ts';
-dotenvConfig({ export: true, path: './src/.env' });
+// dotenvConfig({ export: true, path: './src/.env' });
 
 const env: {
   port: number;
