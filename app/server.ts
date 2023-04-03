@@ -3,7 +3,7 @@ import router from "./infra/shared/router.ts";
 import activityMiddleware from "./infra/middleware/activityMiddleware.ts";
 import notfoundMiddleware from "./infra/middleware/notfoundMiddleware.ts";
 import config from "./config/env.ts";
-// import logger  from "./config/logger.ts";
+import logger  from "./config/logger.ts";
 
 const app = new Application();
 // Logger
@@ -19,8 +19,10 @@ app.use(notfoundMiddleware);
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.addEventListener('listen', ({ port, secure }) => {
-  console.log(`Server started on ${secure ? 'https://' : 'http://'}localhost:${port}`);
+app.addEventListener('listen', ({ port, secure, hostname }) => {
+  const protocol = secure ? "https://" : "http://";
+  const url = `${protocol}${hostname ?? "localhost"}:${port}`;
+  logger.info(`Server started on ${url}:${port}`)
 });
 
 const port = config.port;
