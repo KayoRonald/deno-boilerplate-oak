@@ -19,5 +19,5 @@ export const getIdSchema = z.object({
   }),
 });
 
-export type createSchema = z.TypeOf<typeof createSchema>["body"];
+export type createSchemaInput = z.TypeOf<typeof createSchema>["body"];
 export type getIdSchema = z.TypeOf<typeof getIdSchema>["params"];
